@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StartReel — Where Startups Go Live | Premium OTT Pitch Platform</title>
+<meta name="description" content="Discover, watch, and invest in top startup pitches, live demo days, and founder reels on StartReel OTT platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #070709;
+  --bg-elevated: #0f0e14;
+  --surface: #14121a;
+  --surface-hover: #1c1926;
+  --surface-active: #252132;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-bright: rgba(255, 255, 255, 0.16);
+  --primary: #8B5CF6;
+  --primary-glow: rgba(139, 92, 246, 0.4);
+  --amber: #F59E0B;
+  --amber-glow: rgba(245, 158, 11, 0.4);
+  --pink: #EC4899;
+  --cyan: #06B6D4;
+  --white: #FAFAFA;
+  --muted: #9CA3AF;
+  --muted-dark: #6B7280;
+  
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.35); }
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; outline: none; background: none; }
+input, select, textarea { font-family: inherit; }
+
+.wrap { max-width: 1400px; margin: 0 auto; padding: 0 32px; }
+h1, h2, h3, h4, .brand-text { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; }
+
+.ic { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; display: inline-block; vertical-align: middle; }
+
+/* View Switching Animation */
+.view { display: none; opacity: 0; transform: translateY(12px); transition: opacity 0.35s ease, transform 0.35s ease; }
+.view.active { display: block; opacity: 1; transform: translateY(0); }
+
+/* Ambient Dynamic Background Glow */
+.ambient-bg {
+  position: fixed;
+  top: -20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 1400px;
+  height: 60vh;
+  background: radial-gradient(circle at 50% 30%, rgba(139, 92, 246, 0.15) 0%, rgba(245, 158, 11, 0.05) 45%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+/* ===== HEADER & NAVBAR ===== */
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(7, 7, 9, 0.85);
+  border-bottom: 1px solid var(--line);
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 24px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  cursor: pointer;
+}
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--amber), #D97706);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px var(--amber-glow);
+}
+.brand-logo svg { width: 14px; height: 14px; fill: #110c03; margin-left: 2px; }
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+.nav-links button {
+  color: var(--muted);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-links button:hover { color: var(--white); background: rgba(255, 255, 255, 0.06); }
+.nav-links button.active {
+  color: var(--white);
+  background: var(--primary);
+  box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 16px;
+  width: 240px;
+  transition: all 0.25s ease;
+}
+.search-bar:focus-within {
+  width: 290px;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+.search-bar input {
+  background: transparent;
+  border: none;
+  color: var(--white);
+  font-size: 13px;
+  width: 100%;
+  margin-left: 8px;
+  outline: none;
+}
+.search-bar input::placeholder { color: var(--muted-dark); }
+
+.nav-right { display: flex; align-items: center; gap: 14px; }
+
+.btn {
+  font-weight: 600;
+  font-size: 13.5px;
+  padding: 9px 20px;
+  border-radius: 999px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--amber), #E68A00);
+  color: #160D02;
+  box-shadow: 0 4px 16px var(--amber-glow);
+  font-weight: 700;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--amber-glow);
+  background: linear-gradient(135deg, #FFB020, #F59E0B);
+}
+.btn-secondary {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.4);
+  color: var(--white);
+}
+.btn-secondary:hover {
+  background: rgba(139, 92, 246, 0.28);
+  border-color: var(--primary);
+}
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--line-bright);
+  color: var(--white);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.watchlist-pill {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.watchlist-pill:hover { background: rgba(255, 255, 255, 0.1); }
+.watchlist-count {
+  background: var(--pink);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+}
+
+/* User Avatar */
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--pink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(236, 72, 153, 0.3);
+  cursor: pointer;
+}
+
+/* ===== HERO SPOTLIGHT (CINEMATIC BANNER) ===== */
+.hero-spotlight {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: 360px;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 24px;
+  border: 1px solid var(--line-bright);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  background: #000;
+}
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+  filter: brightness(0.85) contrast(1.1);
+  transition: opacity 0.5s ease;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #070709 12%, rgba(7, 7, 9, 0.8) 30%, rgba(7, 7, 9, 0.4) 60%, rgba(7, 7, 9, 0.1) 100%),
+              radial-gradient(circle at 20% 50%, rgba(7, 7, 9, 0.85) 0%, transparent 60%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 56px 56px 80px;
+  max-width: 720px;
+}
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(236, 72, 153, 0.2);
+  border: 1px solid var(--pink);
+  color: #FF77BC;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+  backdrop-filter: blur(8px);
+}
+.live-pill .pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pink);
+  box-shadow: 0 0 10px var(--pink);
+  animation: pulseDot 1.4s infinite;
+}
+@keyframes pulseDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
+
+.hero-title {
+  font-size: clamp(32px, 4.5vw, 52px);
+  line-height: 1.05;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+.hero-desc {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 15.5px;
+  max-width: 580px;
+  margin-bottom: 26px;
+  line-height: 1.6;
+}
+.hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+
+.hero-stats-badge {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  z-index: 2;
+  display: flex;
+  gap: 12px;
+}
+.h-stat-box {
+  background: rgba(15, 14, 20, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--line-bright);
+  padding: 10px 18px;
+  border-radius: 14px;
+  text-align: center;
+}
+.h-stat-box .val { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--amber); }
+.h-stat-box .lbl { font-size: 10.5px; font-family: var(--font-mono); color: var(--muted); text-transform: uppercase; }
+
+.hero-sound-toggle {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(15, 14, 20, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line-bright);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.hero-sound-toggle:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.08); }
+
+/* ===== SECTION TITLES & RAILS ===== */
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: -30px 0 12px;
+  position: relative;
+  z-index: 3;
+}
+.section-head ~ .section-head { margin-top: 32px; }
+.section-head h2 { font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.section-head .see-all {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+  transition: color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.section-head .see-all:hover { color: var(--amber); }
+
+.rail-wrapper { position: relative; margin: 0 -8px; }
+.rail {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 8px 24px;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+.rail::-webkit-scrollbar { display: none; }
+
+/* ===== VIDEO CARD (OTT STYLED) ===== */
+.pitch-card {
+  flex: 0 0 280px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s, box-shadow 0.35s;
+}
+.pitch-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.2);
+  z-index: 10;
+}
+
+.thumb-container {
+  position: relative;
+  height: 158px;
+  width: 100%;
+  overflow: hidden;
+  background: #110e17;
+}
+.thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.pitch-card:hover .thumb-img { transform: scale(1.08); }
+
+/* Video Preview on Hover */
+.preview-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.pitch-card:hover .preview-video { opacity: 1; }
+
+.thumb-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  padding: 4px 9px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.thumb-badge.live-badge { background: var(--pink); color: #fff; border: none; }
+.thumb-badge.episode-badge { background: rgba(139, 92, 246, 0.85); color: #fff; border: none; }
+
+.thumb-dur {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Continue Watching Progress Bar on Cards */
+.card-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+.card-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber), var(--primary));
+  box-shadow: 0 0 8px var(--amber-glow);
+}
+
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: rgba(7, 7, 9, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.pitch-card:hover .play-overlay { opacity: 1; }
+.play-btn-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--white);
+  color: #110e17;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+  transition: transform 0.25s ease;
+}
+.pitch-card:hover .play-btn-circle { transform: scale(1); }
+.play-btn-circle svg { width: 18px; height: 18px; fill: currentColor; margin-left: 2px; }
+
+.bookmark-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 4;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+.pitch-card:hover .bookmark-btn { opacity: 1; }
+.bookmark-btn:hover { background: var(--primary); border-color: var(--primary); }
+.bookmark-btn.saved { opacity: 1; background: var(--pink); border-color: var(--pink); }
+
+.card-body { padding: 16px; }
+.card-title { font-size: 14.5px; font-weight: 700; line-height: 1.35; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-meta { font-size: 12px; color: var(--muted); font-family: var(--font-mono); display: flex; align-items: center; justify-content: space-between; }
+.card-stats { display: flex; gap: 12px; margin-top: 10px; font-size: 12px; color: var(--muted-dark); }
+.card-stats span { display: flex; align-items: center; gap: 4px; }
+
+/* ===== TOP 10 RANKED RAIL (NETFLIX STYLE) ===== */
+.top10-card { flex: 0 0 320px; display: flex; align-items: flex-end; position: relative; }
+.top10-number {
+  font-family: var(--font-display);
+  font-size: 120px;
+  font-weight: 900;
+  line-height: 0.8;
+  color: #070709;
+  -webkit-text-stroke: 4px rgba(255, 255, 255, 0.35);
+  position: absolute;
+  left: -20px;
+  bottom: -10px;
+  z-index: 1;
+  user-select: none;
+  pointer-events: none;
+  transition: -webkit-text-stroke 0.3s;
+}
+.top10-card:hover .top10-number { -webkit-text-stroke: 4px var(--amber); }
+.top10-card .pitch-card { flex: 1; margin-left: 55px; z-index: 2; }
+
+/* ===== CATEGORY CHIPS ===== */
+.chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0 24px; }
+.chip {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--line-bright);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.25s ease;
+}
+.chip:hover, .chip.active {
+  color: var(--white);
+  border-color: var(--primary);
+  background: var(--primary-glow);
+  box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+/* ===== GRID 4 LAYOUT ===== */
+.grid4 { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+
+/* ===== FULL OTT VIDEO PLAYER PAGE ===== */
+.detail-layout { display: grid; grid-template-columns: 1fr 360px; gap: 32px; margin-top: 24px; }
+
+.cinema-player-container {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.8), 0 0 40px var(--primary-glow);
+  border: 1px solid var(--line-bright);
+  aspect-ratio: 16/9;
+}
+.cinema-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* OTT Video Custom Controls Overlay */
+.player-controls-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.5) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+.cinema-player-container:hover .player-controls-overlay,
+.player-controls-overlay.paused { opacity: 1; pointer-events: auto; }
+
+.player-top-bar { display: flex; justify-content: space-between; align-items: center; }
+.player-title-info { display: flex; align-items: center; gap: 12px; }
+.player-badge { font-family: var(--font-mono); font-size: 11px; padding: 4px 10px; border-radius: 6px; background: var(--primary); color: #fff; font-weight: 700; }
+
+.player-bottom-bar { display: flex; flex-direction: column; gap: 12px; }
+
+/* Custom Progress / Scrub Bar */
+.scrub-container {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: height 0.15s ease;
+}
+.scrub-container:hover { height: 10px; }
+.scrub-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber), var(--primary));
+  border-radius: 999px;
+  width: 0%;
+}
+.scrub-handle {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.15s ease;
+}
+.scrub-container:hover .scrub-handle { transform: translate(-50%, -50%) scale(1); }
+
+.player-btn-row { display: flex; align-items: center; justify-content: space-between; }
+.player-left-ctrls, .player-right-ctrls { display: flex; align-items: center; gap: 16px; }
+
+.p-ctrl-btn {
+  color: var(--white);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.p-ctrl-btn:hover { background: rgba(255, 255, 255, 0.15); transform: scale(1.1); }
+.p-ctrl-btn svg { width: 20px; height: 20px; }
+
+.time-display { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+
+/* Volume Slider */
+.volume-group { display: flex; align-items: center; gap: 8px; }
+.volume-slider {
+  width: 70px;
+  height: 4px;
+  accent-color: var(--amber);
+  cursor: pointer;
+}
+
+/* Playback Speed Dropdown */
+.speed-select {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--line-bright);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ===== PITCH DECK CHAPTERS & TABBED INTERACTION ===== */
+.chapters-bar {
+  margin-top: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+.chapters-head { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--amber); display: flex; align-items: center; gap: 8px; }
+.chapter-chips-list { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.chapter-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.chapter-chip:hover, .chapter-chip.active {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--primary);
+  color: var(--white);
+}
+.chapter-chip .c-time { font-family: var(--font-mono); font-size: 11px; color: var(--amber); }
+
+/* Side Tabs: Pitch Deck / Founder / Investor Access */
+.side-tabs {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 24px;
+  height: fit-content;
+}
+.tab-headers { display: flex; border-bottom: 1px solid var(--line); margin-bottom: 20px; gap: 16px; }
+.tab-btn {
+  padding: 8px 4px 12px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.tab-btn.active { color: var(--white); border-bottom-color: var(--amber); }
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+.founder-card { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.founder-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--pink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  box-shadow: 0 4px 16px var(--primary-glow);
+}
+.founder-info h4 { font-size: 16px; font-weight: 700; }
+.founder-info p { font-size: 12.5px; color: var(--muted); }
+
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+.stat-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.stat-item .s-label { font-size: 11px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase; }
+.stat-item .s-val { font-size: 17px; font-weight: 700; color: var(--amber); font-family: var(--font-display); margin-top: 2px; }
+
+.slide-preview-box {
+  background: #000;
+  border-radius: 14px;
+  border: 1px solid var(--line-bright);
+  padding: 16px;
+  text-align: center;
+  margin-top: 14px;
+}
+.slide-title { font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 8px; }
+.slide-content-text { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+/* ===== LIVE DEMO DAY STAGE ===== */
+.live-layout { display: grid; grid-template-columns: 1fr 360px; gap: 28px; margin-top: 24px; }
+.live-chat-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+}
+.chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding-right: 6px; }
+.chat-bubble {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.chat-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--amber), var(--primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.chat-sender { font-weight: 700; color: var(--amber); margin-right: 6px; }
+.chat-role-badge { font-size: 9px; font-family: var(--font-mono); padding: 1px 5px; border-radius: 4px; background: rgba(139, 92, 246, 0.3); color: var(--primary); margin-left: 4px; }
+
+.chat-input-bar { display: flex; gap: 10px; margin-top: 16px; pt-3; border-top: 1px solid var(--line); }
+.chat-input-bar input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line-bright);
+  border-radius: 999px;
+  padding: 10px 18px;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+}
+.chat-input-bar input:focus { border-color: var(--primary); }
+
+/* Modal overlay for Investor Interest */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-backdrop.open { opacity: 1; pointer-events: auto; }
+.modal-card {
+  background: var(--surface);
+  border: 1px solid var(--line-bright);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 520px;
+  padding: 32px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+.modal-backdrop.open .modal-card { transform: translateY(0); }
+.modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.modal-head h3 { font-size: 22px; }
+.close-btn { color: var(--muted); font-size: 20px; cursor: pointer; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 12.5px; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line-bright);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #fff;
+  font-size: 13.5px;
+  outline: none;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--amber); }
+
+footer {
+  border-top: 1px solid var(--line);
+  margin-top: 80px;
+  padding: 40px 0 30px;
+  color: var(--muted-dark);
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  z-index: 999;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--line-bright);
+  color: var(--white);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.back-btn:hover {
+  background: var(--surface-hover);
+  transform: scale(1.08);
+  border-color: var(--primary);
+}
+.back-btn.visible { display: flex; }
+.back-btn svg { width: 20px; height: 20px; }
+
+/* ===== RESPONSIVE TABLET LANDSCAPE ===== */
+@media (max-width: 1400px) {
+  .detail-layout, .live-layout { grid-template-columns: 1fr; }
+  .side-tabs { max-width: 100%; }
+}
+
+/* ===== RESPONSIVE TABLET ===== */
+@media (max-width: 1024px) {
+  .hero-spotlight { min-height: 300px; }
+  .hero-content { padding: 28px 28px 50px; }
+  .search-bar { display: none; }
+  .pitch-card { flex: 0 0 240px; }
+  .top10-card { flex: 0 0 280px; }
+  .top10-number { font-size: 90px; left: -16px; }
+  .top10-card .pitch-card { margin-left: 40px; }
+}
+
+/* ===== RESPONSIVE MOBILE ===== */
+@media (max-width: 768px) {
+  .wrap { padding: 0 16px; }
+  nav { padding: 8px 12px; gap: 8px; }
+  .brand { font-size: 15px; gap: 6px; }
+  .brand-logo { width: 24px; height: 24px; }
+  .brand-logo svg { width: 11px; height: 11px; }
+  .nav-links { gap: 3px; padding: 3px; }
+  .nav-links button { padding: 5px 10px; font-size: 11px; white-space: nowrap; gap: 4px; }
+  .nav-links button .ic { width: 14px; height: 14px; }
+  .search-bar { display: none; }
+  .nav-right { gap: 8px; }
+  .nav-right .btn-primary { padding: 5px 10px; font-size: 10px; }
+  .nav-right .btn-primary .ic { display: none; }
+  .watchlist-pill { padding: 4px 8px; font-size: 10px; gap: 4px; }
+  .watchlist-pill span:first-child { display: none; }
+  .watchlist-count { font-size: 9px; padding: 0 5px; }
+  .avatar { width: 28px; height: 28px; font-size: 10px; }
+
+  .hero-spotlight { min-height: 260px; border-radius: 14px; margin-top: 12px; }
+  .hero-content { padding: 16px 16px 40px; }
+  .hero-title { font-size: 24px; }
+  .hero-desc { font-size: 13px; margin-bottom: 16px; }
+  .hero-actions { gap: 8px; }
+  .hero-actions .btn { font-size: 12px; padding: 7px 14px; }
+  .hero-stats-badge { top: 16px; right: 16px; gap: 8px; }
+  .h-stat-box { padding: 6px 12px; }
+  .h-stat-box .val { font-size: 14px; }
+  .h-stat-box .lbl { font-size: 9px; }
+
+  .section-head { margin: -20px 0 10px; }
+  .section-head ~ .section-head { margin-top: 24px; }
+  .section-head h2 { font-size: 15px; gap: 6px; }
+  .section-head h2 .ic { width: 15px; height: 15px; }
+  .section-head .see-all { font-size: 11px; }
+
+  .pitch-card { flex: 0 0 200px; border-radius: 12px; }
+  .thumb-container { height: 120px; }
+  .card-body { padding: 12px; }
+  .card-title { font-size: 13px; }
+  .card-meta { font-size: 11px; }
+  .card-stats { font-size: 11px; gap: 8px; }
+  .top10-card { flex: 0 0 240px; }
+  .top10-number { font-size: 70px; left: -14px; bottom: -6px; }
+  .top10-card .pitch-card { margin-left: 32px; }
+  .rail { gap: 10px; padding: 6px 4px 12px; }
+
+  .chip { font-size: 11px; padding: 6px 14px; }
+  .chip-row { gap: 6px; margin: 12px 0 16px; }
+  .grid4 { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+
+  #view-browse h1, #view-watchlist h1 { font-size: 24px !important; }
+  #view-browse p, #view-watchlist p { font-size: 13px !important; }
+
+  .cinema-player-container { border-radius: 16px; }
+  .player-controls-overlay { padding: 12px 16px; }
+  .player-badge { font-size: 10px; padding: 3px 8px; }
+  .p-ctrl-btn { width: 30px; height: 30px; }
+  .p-ctrl-btn svg { width: 16px; height: 16px; }
+  .time-display { font-size: 11px; }
+  .volume-group { display: none; }
+  .speed-select { font-size: 10px; padding: 2px 6px; }
+  .player-title-info span:last-child { font-size: 13px !important; }
+  .player-btn-row { flex-wrap: wrap; gap: 8px; }
+
+  .chapters-bar { padding: 12px; }
+  .chapters-head { font-size: 12px; }
+  .chapter-chip { font-size: 11px; padding: 6px 10px; }
+  .chapter-chip .c-time { display: none; }
+
+  .side-tabs { padding: 16px; }
+  .tab-btn { font-size: 12px; }
+  .stat-grid { gap: 8px; }
+  .stat-item { padding: 8px 12px; }
+  .stat-item .s-val { font-size: 14px; }
+
+  #dTitle { font-size: 20px !important; }
+  #dDesc { font-size: 13px !important; }
+  #dTags span { font-size: 10px !important; padding: 3px 8px !important; }
+
+  .live-layout { gap: 16px; }
+  .live-chat-panel { height: 400px; padding: 14px; }
+  #view-live h1 { font-size: 22px !important; }
+  .live-pill { font-size: 10px; padding: 4px 10px; }
+
+  .modal-card { margin: 16px; padding: 24px; }
+  .modal-head h3 { font-size: 18px; }
+  .form-group input, .form-group select, .form-group textarea { font-size: 12px; padding: 10px 12px; }
+
+  footer { flex-direction: column; text-align: center; gap: 8px; font-size: 12px; margin-top: 40px; padding: 24px 0 20px; }
+
+  .back-btn { bottom: 20px; left: 20px; width: 42px; height: 42px; }
+  #view-detail, #view-browse, #view-watchlist, #view-live { padding-bottom: 80px; }
+}
+
+@media (max-width: 480px) {
+  .pitch-card { flex: 0 0 160px; }
+  .thumb-container { height: 100px; }
+  .top10-card { flex: 0 0 200px; }
+  .top10-number { font-size: 56px; left: -12px; }
+  .top10-card .pitch-card { margin-left: 28px; }
+  .grid4 { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .hero-spotlight { min-height: 220px; border-radius: 10px; margin-top: 8px; }
+  .hero-title { font-size: 18px; }
+  .hero-desc { font-size: 12px; margin-bottom: 10px; }
+  .hero-stats-badge { display: none; }
+  .hero-sound-toggle { width: 36px; height: 36px; bottom: 16px; right: 16px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; }
+  nav { flex-wrap: wrap; gap: 4px; }
+  .nav-links { order: 3; width: 100%; justify-content: center; gap: 2px; padding: 2px; }
+  .nav-links button { padding: 4px 8px; font-size: 10px; }
+  .nav-links button .ic { display: inline-block; width: 12px; height: 12px; }
+  .nav-right .btn-primary { padding: 4px 8px; font-size: 10px; }
+  .watchlist-pill { padding: 3px 6px; font-size: 9px; }
+  .avatar { width: 24px; height: 24px; font-size: 9px; }
+}
+</style>
+</head>
+<body>
+
+<div class="ambient-bg"></div>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <div class="brand" onclick="go('home')">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      STARTREEL
+    </div>
+    
+    <div class="nav-links">
+      <button data-v="home" onclick="go('home')" class="active">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        Home
+      </button>
+      <button data-v="browse" onclick="go('browse')">
+        <svg class="ic" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Browse Pitches
+      </button>
+      <button data-v="live" onclick="go('live')">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        Live Stage
+      </button>
+      <button data-v="watchlist" onclick="go('watchlist')">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+        My List
+      </button>
+    </div>
+
+    <div class="search-bar">
+      <svg class="ic" style="color:var(--muted-dark)" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search startups, founders, AI..." oninput="handleSearch(this.value)">
+    </div>
+
+    <div class="nav-right">
+      <div class="watchlist-pill" onclick="go('watchlist')">
+        <span>Watchlist</span>
+        <span class="watchlist-count" id="wlCount">0</span>
+      </div>
+      <button class="btn btn-primary" onclick="openInvestorModal()">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        Investor Mode
+      </button>
+      <div class="avatar" title="Investor Profile">YK</div>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- ==================== HOME VIEW ==================== -->
+  <div class="view active" id="view-home">
+    
+    <!-- Hero Spotlight Banner -->
+    <div class="hero-spotlight">
+      <video class="hero-video-bg" id="heroVid" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1200&q=80">
+        <source src="videos/startup-meeting.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-stats-badge">
+        <div class="h-stat-box"><div class="val">3,420</div><div class="lbl">Investors Watching</div></div>
+        <div class="h-stat-box"><div class="val">$4.2M</div><div class="lbl">Soft Committed</div></div>
+      </div>
+
+      <button class="hero-sound-toggle" onclick="toggleHeroSound()" id="soundToggleBtn" title="Toggle Sound">
+        <svg class="ic" id="soundIcon" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/></svg>
+      </button>
+
+      <div class="hero-content">
+        <span class="live-pill"><span class="pulse-dot"></span>LIVE DEMO DAY FEATURED</span>
+        <h1 class="hero-title">Verdant Grid — Smart Microgrids for Solar Cooperatives</h1>
+        <p class="hero-desc">Reyna Okafor presents Verdant Grid's AI-driven microgrid software balancing real-time energy distribution for community solar projects across East Africa.</p>
+        
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="openPitch('p1')">
+            <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Watch Pitch (02:15)
+          </button>
+          <button class="btn btn-ghost" onclick="toggleWatchlist('p1')" id="heroWlBtn">
+            <svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            Add to My List
+          </button>
+          <button class="btn btn-secondary" onclick="openInvestorModal('Verdant Grid')">
+            Request Pitch Deck
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Continue Watching Rail -->
+    <div class="section-head">
+      <h2>
+        <svg class="ic" style="color:var(--amber)" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Continue Watching
+      </h2>
+      <span class="see-all" onclick="go('browse')">Browse all →</span>
+    </div>
+    <div class="rail-wrapper">
+      <div class="rail" id="railContinue"></div>
+    </div>
+
+    <!-- Top 10 Startups Ranked -->
+    <div class="section-head">
+      <h2>
+        <svg class="ic" style="color:var(--pink)" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Top 10 Trending Startup Pitches
+      </h2>
+      <span class="see-all" onclick="go('browse')">View rankings →</span>
+    </div>
+    <div class="rail-wrapper">
+      <div class="rail" id="railTop10"></div>
+    </div>
+
+    <!-- Trending Pitches -->
+    <div class="section-head">
+      <h2>
+        <svg class="ic" style="color:var(--cyan)" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        AI & Infrastructure Spotlight
+      </h2>
+      <span class="see-all" onclick="go('browse')">Explore category →</span>
+    </div>
+    <div class="rail-wrapper">
+      <div class="rail" id="railAI"></div>
+    </div>
+
+    <!-- Replays & Demo Days -->
+    <div class="section-head">
+      <h2>
+        <svg class="ic" style="color:var(--primary)" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg>
+        Climate Tech & Sustainability Cohort
+      </h2>
+      <span class="see-all" onclick="go('browse')">See all →</span>
+    </div>
+    <div class="rail-wrapper">
+      <div class="rail" id="railClimate"></div>
+    </div>
+
+  </div>
+
+  <!-- ==================== BROWSE VIEW ==================== -->
+  <div class="view" id="view-browse">
+    <div style="margin-top: 24px;">
+      <h1 style="font-size:36px;">Discover Startup Pitches</h1>
+      <p style="color:var(--muted); font-size:15px; margin-top:4px;">Stream elevator pitches, live demo day replays, and founder deep dives.</p>
+    </div>
+
+    <div class="chip-row" id="chipRow"></div>
+
+    <div class="grid4" id="browseGrid"></div>
+  </div>
+
+  <!-- ==================== WATCHLIST / MY LIST VIEW ==================== -->
+  <div class="view" id="view-watchlist">
+    <div style="margin-top: 24px;">
+      <h1 style="font-size:36px;">My Saved List</h1>
+      <p style="color:var(--muted); font-size:15px; margin-top:4px;">Pitches and founder reels you bookmarked for later review.</p>
+    </div>
+
+    <div class="grid4" id="watchlistGrid" style="margin-top: 24px;"></div>
+  </div>
+
+  <!-- ==================== PITCH DETAIL (OTT PLAYER) VIEW ==================== -->
+  <div class="view" id="view-detail">
+    <div class="detail-layout">
+      <div>
+        <!-- OTT Cinema Video Player Container -->
+        <div class="cinema-player-container" id="playerBox">
+          <video class="cinema-video" id="mainVideo" playsinline poster="">
+            <source id="videoSource" src="" type="video/mp4">
+          </video>
+          
+          <!-- Custom OTT Overlay Controls -->
+          <div class="player-controls-overlay paused" id="playerControls">
+            <div class="player-top-bar">
+              <div class="player-title-info">
+                <span class="player-badge" id="pBadgeType">PITCH</span>
+                <span style="font-weight:700; font-size:15px;" id="pPlayerTitle">Title</span>
+              </div>
+              <button class="p-ctrl-btn" onclick="toggleWatchlistCurrent()" id="detailWlIcon" title="Bookmark">
+                <svg class="ic" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+              </button>
+            </div>
+
+            <div class="player-bottom-bar">
+              <!-- Scrub / Progress Bar -->
+              <div class="scrub-container" onclick="seekVideo(event)" id="scrubBar">
+                <div class="scrub-fill" id="scrubFill"></div>
+                <div class="scrub-handle" id="scrubHandle"></div>
+              </div>
+
+              <div class="player-btn-row">
+                <div class="player-left-ctrls">
+                  <button class="p-ctrl-btn" onclick="togglePlayPause()" id="playPauseBtn">
+                    <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </button>
+                  <button class="p-ctrl-btn" onclick="skipTime(-10)" title="Rewind 10s">
+                    <svg class="ic" viewBox="0 0 24 24"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+                  </button>
+                  <button class="p-ctrl-btn" onclick="skipTime(10)" title="Forward 10s">
+                    <svg class="ic" viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 11-2.13-9.36L23 10"/></svg>
+                  </button>
+                  
+                  <div class="volume-group">
+                    <button class="p-ctrl-btn" onclick="toggleMute()" id="muteBtn">
+                      <svg class="ic" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+                    </button>
+                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="1" oninput="setVolume(this.value)">
+                  </div>
+
+                  <span class="time-display" id="timeDisplay">00:00 / 00:00</span>
+                </div>
+
+                <div class="player-right-ctrls">
+                  <select class="speed-select" onchange="setPlaybackSpeed(this.value)">
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1.0x Normal</option>
+                    <option value="1.25">1.25x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2.0x</option>
+                  </select>
+
+                  <button class="p-ctrl-btn" onclick="togglePiP()" title="Picture in Picture">
+                    <svg class="ic" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><rect x="13" y="11" width="7" height="5" rx="1"/></svg>
+                  </button>
+                  <button class="p-ctrl-btn" onclick="toggleFullscreen()" title="Fullscreen">
+                    <svg class="ic" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pitch Chapter Jump Markers Bar -->
+        <div class="chapters-bar">
+          <div class="chapters-head">
+            <svg class="ic" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            Pitch Chapters & Key Jump Points
+          </div>
+          <div class="chapter-chips-list" id="chapterChipsList"></div>
+        </div>
+
+        <!-- Pitch Title & Description -->
+        <div style="margin-top: 24px;">
+          <h1 id="dTitle" style="font-size: 28px;">Pitch Title</h1>
+          <div style="display:flex; gap:16px; margin-top: 10px; color:var(--muted); font-size:13.5px; font-family:var(--font-mono)">
+            <span id="dCat" style="color:var(--amber)">Category</span>
+            <span>·</span>
+            <span id="dViews">0 views</span>
+            <span>·</span>
+            <span id="dDate">Recently</span>
+          </div>
+          <p id="dDesc" style="margin-top: 16px; color: var(--muted); font-size: 15px; line-height: 1.7; max-width: 800px;"></p>
+          <div id="dTags" style="display:flex; gap:8px; margin-top: 16px; flex-wrap:wrap;"></div>
+        </div>
+
+      </div>
+
+      <!-- Side Panel Tabs -->
+      <div class="side-tabs">
+        <div class="tab-headers">
+          <button class="tab-btn active" onclick="switchTab('founder')">Founder & Deal</button>
+          <button class="tab-btn" onclick="switchTab('deck')">Pitch Deck Slides</button>
+        </div>
+
+        <!-- Tab 1: Founder -->
+        <div class="tab-pane active" id="tab-founder">
+          <div class="founder-card">
+            <div class="founder-avatar" id="dFAv">RO</div>
+            <div class="founder-info">
+              <h4 id="dFName">Reyna Okafor</h4>
+              <p id="dFRole">Founder & CEO</p>
+            </div>
+          </div>
+          
+          <div class="stat-grid">
+            <div class="stat-item"><div class="s-label">Round</div><div class="s-val" id="dStatRound">Pre-Seed</div></div>
+            <div class="stat-item"><div class="s-label">Target Raise</div><div class="s-val" id="dStatRaise">$1.5M</div></div>
+            <div class="stat-item"><div class="s-label">Monthly Growth</div><div class="s-val">+34%</div></div>
+            <div class="stat-item"><div class="s-label">Investors</div><div class="s-val" id="dStatInterest">High</div></div>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%; justify-content:center; margin-top:10px;" onclick="openInvestorModal()">
+            Connect & Request Intro
+          </button>
+          <button class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:10px;" onclick="openProfile()">
+            View Full Founder Profile
+          </button>
+        </div>
+
+        <!-- Tab 2: Pitch Deck -->
+        <div class="tab-pane" id="tab-deck">
+          <div style="font-size:13.5px; font-weight:700; color:var(--white);">Synchronized Pitch Deck</div>
+          <p style="font-size:12px; color:var(--muted); margin-top:2px;">Slides change automatically as the video plays.</p>
+          
+          <div class="slide-preview-box">
+            <div class="slide-title" id="slideTitle">Slide 1: Executive Summary</div>
+            <div class="slide-content-text" id="slideBody">AI-driven microgrid software balancing rural energy grids automatically.</div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; margin-top:14px;">
+            <button class="btn btn-ghost" style="padding:6px 12px; font-size:12px;" onclick="prevSlide()">← Prev Slide</button>
+            <button class="btn btn-ghost" style="padding:6px 12px; font-size:12px;" onclick="nextSlide()">Next Slide →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== LIVE DEMO DAY VIEW ==================== -->
+  <div class="view" id="view-live">
+    <div style="margin-top: 24px;">
+      <span class="live-pill"><span class="pulse-dot"></span>GLOBAL DEMO DAY BROADCST</span>
+      <h1 style="font-size:36px; margin-top:8px;">Climate & Sustainability Tech Cohort — Live</h1>
+    </div>
+
+    <div class="live-layout">
+      <div>
+        <div class="cinema-player-container" style="aspect-ratio:16/9;">
+          <video class="cinema-video" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=1200&q=80">
+            <source src="videos/business-handshake.mp4" type="video/mp4">
+          </video>
+          <div style="position:absolute; top:20px; left:20px; z-index:5;" class="live-pill">
+            <span class="pulse-dot"></span> LIVE · 3,420 Spectators
+          </div>
+        </div>
+
+        <div style="margin-top:20px; background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:20px;">
+          <h3 style="font-size:20px;">Now Pitching: Reyna Okafor (Verdant Grid)</h3>
+          <p style="color:var(--muted); font-size:14px; margin-top:4px;">Smart microgrid software for community solar cooperatives. Pitch 3 of 6.</p>
+          <div style="display:flex; gap:12px; margin-top:16px;">
+            <button class="btn btn-primary" onclick="upvoteLivePitch()">
+              <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Upvote Startup (<span id="liveVotes">842</span>)
+            </button>
+            <button class="btn btn-secondary" onclick="openInvestorModal('Verdant Grid (Live)')">
+              Request Intro / Term Sheet
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Chat Stream -->
+      <div class="live-chat-panel">
+        <h4 style="font-size:16px; margin-bottom:14px; display:flex; align-items:center; justify-content:space-between;">
+          <span>Investor Live Chat & Q&A</span>
+          <span style="font-size:11px; font-family:var(--font-mono); color:var(--amber);">ONLINE</span>
+        </h4>
+        <div class="chat-messages" id="chatStream"></div>
+        <div class="chat-input-bar">
+          <input type="text" id="liveChatInput" placeholder="Ask founder a question..." onkeydown="if(event.key==='Enter')sendLiveChat()">
+          <button class="btn btn-primary" style="padding:8px 16px;" onclick="sendLiveChat()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- INVESTOR EXPRESS INTEREST MODAL -->
+<div class="modal-backdrop" id="investorModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3>Express Investor Interest</h3>
+      <span class="close-btn" onclick="closeInvestorModal()">✕</span>
+    </div>
+    <form onsubmit="submitInvestorForm(event)">
+      <div class="form-group">
+        <label>Startup Target</label>
+        <input type="text" id="modalTargetStartup" value="Verdant Grid" readonly>
+      </div>
+      <div class="form-group">
+        <label>Your Name / Firm</label>
+        <input type="text" required placeholder="e.g. Sarah Jenkins (Sequoia Capital)">
+      </div>
+      <div class="form-group">
+        <label>Interest Type</label>
+        <select>
+          <option>Request Full Pitch Deck & Data Room</option>
+          <option>Schedule Founder 1-on-1 Call</option>
+          <option>Soft Commit Allocation ($50k - $500k)</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Note to Founder</label>
+        <textarea rows="3" placeholder="Excited about your microgrid load balancing demo. Would love to review your unit economics."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Submit Request</button>
+    </form>
+  </div>
+</div>
+
+<!-- Floating Back Button -->
+<button class="back-btn" id="backBtn" onclick="goBack()" title="Go back">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+</button>
+
+<footer class="wrap">
+  <div>
+    <span style="font-family:var(--font-display); font-weight:800; color:var(--white); font-size:16px;">STARTREEL</span>
+    <span style="margin-left:12px;">© 2026 StartReel OTT Media Inc. All rights reserved.</span>
+  </div>
+  <div>Startup Pitch Stream Engine v2.4 · Built for Founders & VCs</div>
+</footer>
+
+<script>
+/* ==================== OTT DEMO DATA ==================== */
+const FOUNDERS = {
+  f1: { name: "Reyna Okafor", initials: "RO", role: "Founder & CEO, Verdant Grid", bio: "Building smart microgrid software for community solar cooperatives.", round: "Pre-Seed", raise: "$1.5M", interest: "High" },
+  f2: { name: "Marcus Lindqvist", initials: "ML", role: "Founder & CEO, Pellucid Health", bio: "AI triage layer routing rural patients to telehealth networks.", round: "Seed", raise: "$2.2M", interest: "Medium" },
+  f3: { name: "Aiko Tanaka", initials: "AT", role: "Founder & CEO, Loopstack", bio: "Former Stripe engineer building usage-based billing for AI agents.", round: "Seed", raise: "$3.0M", interest: "Very High" },
+  f4: { name: "Daniela Reyes", initials: "DR", role: "Founder & CEO, Harvestfolio", bio: "Embedded credit & mobile ledger for smallholder farming collectives.", round: "Pre-Seed", raise: "$1.0M", interest: "Watching" },
+  f5: { name: "Tomi Adeyemi", initials: "TA", role: "Founder & CEO, Switchback", bio: "Battery-swap infrastructure network for urban EV fleets.", round: "Seed", raise: "$2.8M", interest: "High" },
+  f6: { name: "Priya Nandakumar", initials: "PN", role: "Founder & CEO, Aftercare", bio: "Post-surgical patient recovery companion for hospital systems.", round: "Pre-Seed", raise: "$850K", interest: "Medium" }
+};
+
+const PITCHES = [
+  {
+    id: "p1",
+    title: "Verdant Grid — Smart Microgrids for Community Solar",
+    founder: "f1",
+    cat: "Climate Tech",
+    type: "live",
+    dur: "02:15",
+    videoUrl: "videos/workspace-meeting.mp4",
+    poster: "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80",
+    views: "18.2K",
+    date: "Today",
+    progress: 75,
+    rank: 1,
+    desc: "Reyna presents Verdant Grid's microgrid orchestration software, enabling community solar co-ops to automatically balance local power loads and resell surplus energy to regional utility grids.",
+    tags: ["Climate Tech", "Hardware + Software", "Pre-Seed", "B2B SaaS"],
+    chapters: [
+      { time: 0, title: "00:00 - Founder Intro" },
+      { time: 15, title: "00:15 - Grid Instability Problem" },
+      { time: 30, title: "00:30 - Live Microgrid Demo" },
+      { time: 45, title: "00:45 - Unit Economics" },
+      { time: 60, title: "01:00 - The $1.5M Pre-Seed Ask" }
+    ],
+    slides: [
+      { title: "Slide 1: Executive Overview", body: "Verdant Grid software coordinates solar arrays, battery storage, and local power consumption automatically." },
+      { title: "Slide 2: $14B Market Opportunity", body: "12,000+ community solar installations planned across emerging markets in the next 3 years." },
+      { title: "Slide 3: Technology Architecture", body: "Sub-second IoT grid balancing algorithm reduces energy waste by 38%." }
+    ]
+  },
+  {
+    id: "p2",
+    title: "Loopstack — Usage Billing Engine for AI Agents",
+    founder: "f3",
+    cat: "AI / Infra",
+    type: "episode",
+    dur: "01:45",
+    videoUrl: "videos/whiteboard-presentation.mp4",
+    poster: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
+    views: "24.7K",
+    date: "2 days ago",
+    progress: 40,
+    rank: 2,
+    desc: "Aiko Tanaka walks through how Loopstack meters per-token, per-tool, and per-agent compute usage so AI companies can bill customers accurately in real time.",
+    tags: ["AI / Infra", "DevTools", "Seed"],
+    chapters: [
+      { time: 0, title: "00:00 - The AI Billing Crisis" },
+      { time: 20, title: "00:20 - Metering Infrastructure" },
+      { time: 40, title: "00:40 - Customer Traction" }
+    ],
+    slides: [
+      { title: "Slide 1: The Token Problem", body: "Existing subscription billing breaks when LLM API costs scale unpredictably." },
+      { title: "Slide 2: Loopstack SDK Integration", body: "Three lines of code to meter compute, tool calls, and API credits seamlessly." }
+    ]
+  },
+  {
+    id: "p3",
+    title: "Switchback — Rapid Battery-Swap Network for EV Fleets",
+    founder: "f5",
+    cat: "Climate Tech",
+    type: "episode",
+    dur: "02:00",
+    videoUrl: "videos/startup-meeting.mp4",
+    poster: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=600&q=80",
+    views: "14.9K",
+    date: "4 days ago",
+    progress: 90,
+    rank: 3,
+    desc: "Tomi Adeyemi reveals Switchback's 60-second automated battery swap stations built for 2-wheel and 3-wheel commercial EV delivery fleets.",
+    tags: ["Climate Tech", "Mobility", "Hardware"],
+    chapters: [
+      { time: 0, title: "00:00 - Station Hardware Demo" },
+      { time: 30, title: "00:30 - Swap Economics" }
+    ],
+    slides: [
+      { title: "Slide 1: Modular Swap Hubs", body: "Solar-powered battery swap hubs operating with 99.8% uptime." }
+    ]
+  },
+  {
+    id: "p4",
+    title: "Pellucid Health — AI Triage for Rural Telehealth",
+    founder: "f2",
+    cat: "HealthTech",
+    type: "episode",
+    dur: "01:30",
+    videoUrl: "videos/business-handshake.mp4",
+    poster: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80",
+    views: "11.4K",
+    date: "1 week ago",
+    progress: 15,
+    rank: 4,
+    desc: "Marcus Lindqvist demonstrates an AI-guided clinical voice triage platform helping rural clinics evaluate critical patients prior to hospital transfer.",
+    tags: ["HealthTech", "AI", "Seed"],
+    chapters: [{ time: 0, title: "00:00 - Clinical AI Voice Triage" }],
+    slides: [{ title: "Slide 1: Rural Healthcare Void", body: "Over 60M patients live more than 45 minutes away from specialist emergency care." }]
+  },
+  {
+    id: "p5",
+    title: "Harvestfolio — Embedded Credit Ledger for Farmers",
+    founder: "f4",
+    cat: "Fintech",
+    type: "replay",
+    dur: "03:10",
+    videoUrl: "videos/team-meeting.mp4",
+    poster: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=80",
+    views: "8.5K",
+    date: "2 weeks ago",
+    progress: 55,
+    rank: 5,
+    desc: "Daniela Reyes presents Harvestfolio's mobile cooperative ledger unlocking low-cost crop input loans for smallholder agricultural cooperatives.",
+    tags: ["Fintech", "Emerging Markets", "Pre-Seed"],
+    chapters: [{ time: 0, title: "00:00 - Cooperative Credit Overview" }],
+    slides: [{ title: "Slide 1: Agritech Financing", body: "Direct underwriting powered by satellite crop yield telemetry." }]
+  },
+  {
+    id: "p6",
+    title: "Aftercare — Smart Post-Surgical Patient Monitor",
+    founder: "f6",
+    cat: "HealthTech",
+    type: "episode",
+    dur: "01:20",
+    videoUrl: "videos/office-building.mp4",
+    poster: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80",
+    views: "6.2K",
+    date: "3 weeks ago",
+    progress: 10,
+    rank: 6,
+    desc: "Priya Nandakumar introduces Aftercare, a daily automated recovery check-in tool designed with hospital discharge teams to reduce 30-day readmissions.",
+    tags: ["HealthTech", "B2B SaaS"],
+    chapters: [{ time: 0, title: "00:00 - Reducing Hospital Readmissions" }],
+    slides: [{ title: "Slide 1: Patient Companion App", body: "Real-time symptom tracking alerting surgical nurses to early wound infections." }]
+  }
+];
+
+const CATEGORIES = ["All", "Climate Tech", "AI / Infra", "HealthTech", "Fintech"];
+
+/* State Management */
+let watchlist = new Set(["p1", "p3"]);
+let currentPitch = null;
+let currentSlideIndex = 0;
+let isHeroMuted = true;
+let navHistory = [];
+
+/* ==================== INIT & RENDERING ==================== */
+function init() {
+  updateWatchlistCount();
+  renderHomeRails();
+  renderBrowseChips();
+  renderBrowseGrid("All");
+  initLiveChat();
+}
+
+function updateWatchlistCount() {
+  document.getElementById("wlCount").textContent = watchlist.size;
+}
+
+function cardHTML(p, showProgress = false, rankNumber = null) {
+  const f = FOUNDERS[p.founder];
+  const isSaved = watchlist.has(p.id);
+  const badgeClass = p.type === 'live' ? 'live-badge' : (p.type === 'episode' ? 'episode-badge' : '');
+  const badgeText = p.type === 'live' ? 'LIVE DEMO' : p.type.toUpperCase();
+
+  const progressHTML = showProgress ? `
+    <div class="card-progress-bar">
+      <div class="card-progress-fill" style="width: ${p.progress}%"></div>
+    </div>` : '';
+
+  const rankHTML = rankNumber ? `<div class="top10-number">${rankNumber}</div>` : '';
+
+  return `
+  <div class="${rankNumber ? 'top10-card' : ''}">
+    ${rankHTML}
+    <div class="pitch-card" onclick="openPitch('${p.id}')">
+      <button class="bookmark-btn ${isSaved ? 'saved' : ''}" onclick="event.stopPropagation(); toggleWatchlist('${p.id}')" title="Bookmark">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+      </button>
+
+      <div class="thumb-container">
+        <img class="thumb-img" src="${p.poster}" alt="${p.title}" loading="lazy">
+        <video class="preview-video" loop muted playsinline src="${p.videoUrl}"></video>
+        <span class="thumb-badge ${badgeClass}">${badgeText}</span>
+        <span class="thumb-dur">${p.dur}</span>
+        <div class="play-overlay">
+          <div class="play-btn-circle">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        ${progressHTML}
+      </div>
+
+      <div class="card-body">
+        <div class="card-title">${p.title}</div>
+        <div class="card-meta">
+          <span>${f ? f.name : 'Founder'}</span>
+          <span style="color:var(--amber)">${p.cat}</span>
+        </div>
+        <div class="card-stats">
+          <span>
+            <svg class="ic" style="width:13px;height:13px" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/></svg>
+            ${p.views} views
+          </span>
+          <span>·</span>
+          <span>${p.date}</span>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderHomeRails() {
+  // Continue Watching
+  document.getElementById("railContinue").innerHTML = PITCHES.map(p => cardHTML(p, true)).join('');
+  
+  // Top 10 Ranked
+  document.getElementById("railTop10").innerHTML = PITCHES.map((p, idx) => cardHTML(p, false, idx + 1)).join('');
+
+  // AI & Infra
+  document.getElementById("railAI").innerHTML = PITCHES.filter(p => p.cat === "AI / Infra").concat(PITCHES.slice(0, 3)).map(p => cardHTML(p)).join('');
+
+  // Climate Tech
+  document.getElementById("railClimate").innerHTML = PITCHES.filter(p => p.cat === "Climate Tech").concat(PITCHES.slice(2, 4)).map(p => cardHTML(p)).join('');
+}
+
+function renderBrowseChips() {
+  document.getElementById("chipRow").innerHTML = CATEGORIES.map(c => `
+    <button class="chip ${c === 'All' ? 'active' : ''}" onclick="filterBrowse(this, '${c}')">${c}</button>
+  `).join('');
+}
+
+function filterBrowse(btn, category) {
+  document.querySelectorAll('#chipRow .chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBrowseGrid(category);
+}
+
+function renderBrowseGrid(category) {
+  const filtered = category === "All" ? PITCHES : PITCHES.filter(p => p.cat === category);
+  document.getElementById("browseGrid").innerHTML = filtered.map(p => cardHTML(p)).join('');
+}
+
+function renderWatchlistGrid() {
+  const list = PITCHES.filter(p => watchlist.has(p.id));
+  const container = document.getElementById("watchlistGrid");
+  if (list.length === 0) {
+    container.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 60px 0; color:var(--muted)">No pitches in your watchlist yet. Click the bookmark icon on any card to save it!</div>`;
+  } else {
+    container.innerHTML = list.map(p => cardHTML(p)).join('');
+  }
+}
+
+/* ==================== WATCHLIST ACTIONS ==================== */
+function toggleWatchlist(id) {
+  if (watchlist.has(id)) {
+    watchlist.delete(id);
+  } else {
+    watchlist.add(id);
+  }
+  updateWatchlistCount();
+  renderHomeRails();
+  renderWatchlistGrid();
+  
+  if (currentPitch && currentPitch.id === id) {
+    updateDetailWatchlistButton();
+  }
+}
+
+function toggleWatchlistCurrent() {
+  if (currentPitch) toggleWatchlist(currentPitch.id);
+}
+
+function updateDetailWatchlistButton() {
+  const btn = document.getElementById("detailWlIcon");
+  if (!btn || !currentPitch) return;
+  if (watchlist.has(currentPitch.id)) {
+    btn.style.color = "var(--pink)";
+  } else {
+    btn.style.color = "var(--white)";
+  }
+}
+
+/* ==================== PITCH DETAIL & PLAYER CONTROLS ==================== */
+function openPitch(id) {
+  const p = PITCHES.find(x => x.id === id);
+  if (!p) return;
+  currentPitch = p;
+  const f = FOUNDERS[p.founder] || FOUNDERS.f1;
+
+  document.getElementById("dTitle").textContent = p.title;
+  document.getElementById("dCat").textContent = p.cat;
+  document.getElementById("dViews").textContent = p.views + " views";
+  document.getElementById("dDate").textContent = p.date;
+  document.getElementById("dDesc").textContent = p.desc;
+  document.getElementById("pPlayerTitle").textContent = p.title;
+  document.getElementById("pBadgeType").textContent = p.type.toUpperCase();
+
+  document.getElementById("dFAv").textContent = f.initials;
+  document.getElementById("dFName").textContent = f.name;
+  document.getElementById("dFRole").textContent = f.role;
+  document.getElementById("dStatRound").textContent = f.round;
+  document.getElementById("dStatRaise").textContent = f.raise;
+  document.getElementById("dStatInterest").textContent = f.interest;
+
+  document.getElementById("dTags").innerHTML = p.tags.map(t => `<span style="font-family:var(--font-mono); font-size:11.5px; border:1px solid var(--line-bright); padding:4px 12px; border-radius:999px; color:var(--muted);">${t}</span>`).join('');
+
+  // Setup Video Player
+  const vid = document.getElementById("mainVideo");
+  const src = document.getElementById("videoSource");
+  src.src = p.videoUrl;
+  vid.poster = p.poster;
+  vid.load();
+  vid.play().catch(() => {});
+
+  // Setup Chapters
+  const chWrap = document.getElementById("chapterChipsList");
+  chWrap.innerHTML = p.chapters.map(c => `
+    <button class="chapter-chip" onclick="jumpToTime(${c.time})">
+      <span class="c-time">${c.title.split(' - ')[0]}</span>
+      <span>${c.title.split(' - ')[1]}</span>
+    </button>
+  `).join('');
+
+  // Setup Slides
+  currentSlideIndex = 0;
+  updateSlideView();
+  updateDetailWatchlistButton();
+
+  go('detail');
+}
+
+const mainVideo = document.getElementById("mainVideo");
+const scrubFill = document.getElementById("scrubFill");
+const scrubHandle = document.getElementById("scrubHandle");
+const timeDisplay = document.getElementById("timeDisplay");
+
+mainVideo.addEventListener("timeupdate", () => {
+  if (!mainVideo.duration) return;
+  const pct = (mainVideo.currentTime / mainVideo.duration) * 100;
+  scrubFill.style.width = pct + "%";
+  scrubHandle.style.left = pct + "%";
+  timeDisplay.textContent = `${formatTime(mainVideo.currentTime)} / ${formatTime(mainVideo.duration)}`;
+});
+
+mainVideo.addEventListener("play", () => {
+  document.getElementById("playPauseBtn").innerHTML = `<svg class="ic" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;
+  document.getElementById("playerControls").classList.remove("paused");
+});
+
+mainVideo.addEventListener("pause", () => {
+  document.getElementById("playPauseBtn").innerHTML = `<svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+  document.getElementById("playerControls").classList.add("paused");
+});
+
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
+function togglePlayPause() {
+  if (mainVideo.paused) mainVideo.play();
+  else mainVideo.pause();
+}
+
+function skipTime(delta) {
+  mainVideo.currentTime = Math.max(0, Math.min(mainVideo.duration, mainVideo.currentTime + delta));
+}
+
+function seekVideo(e) {
+  const rect = document.getElementById("scrubBar").getBoundingClientRect();
+  const pos = (e.clientX - rect.left) / rect.width;
+  mainVideo.currentTime = pos * mainVideo.duration;
+}
+
+function jumpToTime(t) {
+  mainVideo.currentTime = t;
+  mainVideo.play();
+}
+
+function toggleMute() {
+  mainVideo.muted = !mainVideo.muted;
+}
+
+function setVolume(v) {
+  mainVideo.volume = v;
+  mainVideo.muted = v == 0;
+}
+
+function setPlaybackSpeed(s) {
+  mainVideo.playbackRate = parseFloat(s);
+}
+
+function toggleFullscreen() {
+  const box = document.getElementById("playerBox");
+  if (!document.fullscreenElement) {
+    box.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+function togglePiP() {
+  if (document.pictureInPictureElement) {
+    document.exitPictureInPicture();
+  } else {
+    mainVideo.requestPictureInPicture().catch(() => {});
+  }
+}
+
+/* Slide Viewer */
+function updateSlideView() {
+  if (!currentPitch || !currentPitch.slides || currentPitch.slides.length === 0) return;
+  const slide = currentPitch.slides[currentSlideIndex];
+  document.getElementById("slideTitle").textContent = slide.title;
+  document.getElementById("slideBody").textContent = slide.body;
+}
+
+function prevSlide() {
+  if (!currentPitch) return;
+  currentSlideIndex = (currentSlideIndex - 1 + currentPitch.slides.length) % currentPitch.slides.length;
+  updateSlideView();
+}
+
+function nextSlide() {
+  if (!currentPitch) return;
+  currentSlideIndex = (currentSlideIndex + 1) % currentPitch.slides.length;
+  updateSlideView();
+}
+
+function switchTab(t) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  
+  if (t === 'founder') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-founder').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-deck').classList.add('active');
+  }
+}
+
+/* ==================== HERO SOUND TOGGLE ==================== */
+function toggleHeroSound() {
+  const heroVid = document.getElementById("heroVid");
+  isHeroMuted = !isHeroMuted;
+  heroVid.muted = isHeroMuted;
+  
+  const icon = document.getElementById("soundIcon");
+  if (isHeroMuted) {
+    icon.innerHTML = `<path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/>`;
+  } else {
+    icon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>`;
+  }
+}
+
+/* ==================== LIVE DEMO DAY & CHAT ==================== */
+const CHAT_DATA = [
+  { name: "Devon Vance", role: "VC Partner", text: "Impressive microgrid load balancing demo!" },
+  { name: "Kai Sterling", role: "Angel", text: "How does Verdant Grid handle off-grid storage integration?" },
+  { name: "Elena Rostova", role: "Lead Investor", text: "Just requested pitch deck access for our deal review meeting." },
+  { name: "Marcus L.", role: "Founder", text: "Great unit economics breakdown on slide 4." }
+];
+
+function initLiveChat() {
+  const wrap = document.getElementById("chatStream");
+  wrap.innerHTML = CHAT_DATA.map(c => `
+    <div class="chat-bubble">
+      <div class="chat-avatar">${c.name.split(' ').map(n=>n[0]).join('')}</div>
+      <div>
+        <span class="chat-sender">${c.name}</span>
+        <span class="chat-role-badge">${c.role}</span>
+        <div style="color:var(--muted); margin-top:2px;">${c.text}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function sendLiveChat() {
+  const inp = document.getElementById("liveChatInput");
+  const val = inp.value.trim();
+  if (!val) return;
+
+  const wrap = document.getElementById("chatStream");
+  wrap.insertAdjacentHTML('beforeend', `
+    <div class="chat-bubble">
+      <div class="chat-avatar" style="background:var(--pink)">YK</div>
+      <div>
+        <span class="chat-sender">You (Verified Investor)</span>
+        <span class="chat-role-badge">Investor</span>
+        <div style="color:var(--muted); margin-top:2px;">${val}</div>
+      </div>
+    </div>
+  `);
+  wrap.scrollTop = wrap.scrollHeight;
+  inp.value = '';
+}
+
+function upvoteLivePitch() {
+  const votesEl = document.getElementById("liveVotes");
+  votesEl.textContent = parseInt(votesEl.textContent) + 1;
+}
+
+/* ==================== INVESTOR MODAL ==================== */
+function openInvestorModal(startupName = "Verdant Grid") {
+  document.getElementById("modalTargetStartup").value = startupName;
+  document.getElementById("investorModal").classList.add("open");
+}
+
+function closeInvestorModal() {
+  document.getElementById("investorModal").classList.remove("open");
+}
+
+function submitInvestorForm(e) {
+  e.preventDefault();
+  alert("Thank you! Your request has been transmitted to the founder's investor portal.");
+  closeInvestorModal();
+}
+
+/* ==================== SEARCH & ROUTER ==================== */
+function handleSearch(query) {
+  if (!query) {
+    renderBrowseGrid("All");
+    return;
+  }
+  const q = query.toLowerCase();
+  const filtered = PITCHES.filter(p => 
+    p.title.toLowerCase().includes(q) || 
+    p.cat.toLowerCase().includes(q) || 
+    p.desc.toLowerCase().includes(q)
+  );
+  document.getElementById("browseGrid").innerHTML = filtered.map(p => cardHTML(p)).join('');
+  go('browse');
+}
+
+function go(view, replace = false) {
+  if (!replace) {
+    const activeView = document.querySelector('.view.active');
+    if (activeView) {
+      const currentId = activeView.id.replace('view-', '');
+      if (currentId !== view) navHistory.push(currentId);
+    }
+  }
+
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const target = document.getElementById('view-' + view);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.nav-links button').forEach(b => {
+    b.classList.toggle('active', b.dataset.v === view);
+  });
+
+  const backBtn = document.getElementById('backBtn');
+  if (view === 'home') {
+    backBtn.classList.remove('visible');
+  } else {
+    backBtn.classList.add('visible');
+  }
+
+  if (view === 'watchlist') renderWatchlistGrid();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBack() {
+  const last = navHistory.pop();
+  if (last) {
+    go(last, true);
+  } else {
+    go('home', true);
+  }
+}
+
+// Global Initialization
+init();
+</script>
+
+</body>
+</html>
