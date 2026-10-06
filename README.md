@@ -11,7 +11,8 @@ Connect Angels is a web application focused on bringing people together through 
 - 🎨 A clean, responsive interface that works on desktop and mobile
 - ☁️ Deployed on Vercel for fast, reliable access
 
-🔗 **Live Link:** [Connect Angels](https://connectangels-alpha.vercel.app/)
+ **Github Link:** [Connect Angels](https://github.com/connectangels25/Connectangel)
+ **Live Link:** [Connect Angels](https://connectangels-alpha.vercel.app/)
 
 ---
 
@@ -24,8 +25,9 @@ The Incubation Platform, branded **Arba360**, is a Pre-Incubator and Incubator p
 - 💰 Funding and growth support
 - 🔐 Secure login with an authenticated dashboard
 - 📊 A dashboard to track progress and manage activity
-
-🔗 **Live Link:** [Incubation Platform Dashboard](https://incubationplatform.netlify.app/)
+- 
+   **Guthub Link:** [Incubation Platform](https://github.com/connectangels2026/IncubatorPlatform)
+   **Live Link:** [Incubation Platform](https://incubationplatform.netlify.app/)
 
 ---
 
